@@ -1,13 +1,14 @@
-- hosts: workstations 
+---
+- hosts: debian_servers
   become: yes
   tasks:
-    - name: Update packages on workstations
-      package:
-        name:  apt
+    - name: Update packages on Debian servers
+      apt:
+        name: "apt"
         state: latest
-      register: workstation_updates
+      register: debian_updates
         
-    - name: Reboot workstations if needed
+    - name: Reboot Debian servers if needed
       reboot:
         reboot_timeout: 300
-      when: workstation_updates.changed
+      when: debian_updates.changed
