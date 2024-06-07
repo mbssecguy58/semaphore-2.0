@@ -1,0 +1,13 @@
+- hosts: workstations 
+  become: yes
+  tasks:
+    - name: Update packages on workstations
+      package:
+        name: "apt"
+        state: latest
+      register: workstation_updates
+        
+    - name: Reboot workstations if needed
+      reboot:
+        reboot_timeout: 300
+      when: workstation_updates.changed
