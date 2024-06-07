@@ -7,6 +7,12 @@
         name: "apt"
         state: latest
       register: debian_updates
+
+    - name: Upgrade packages on Debian servers
+      apt:
+        name: "apt"
+        state: latest
+      register: debian_upgrades
         
     - name: Reboot Debian servers if needed
       reboot:
