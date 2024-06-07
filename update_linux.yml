@@ -4,7 +4,7 @@
   tasks:
     - name: Update packages on Debian servers
       apt:
-        name: "update"
+        name: "apt"
         state: latest
       register: debian_updates
         
