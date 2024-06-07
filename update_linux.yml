@@ -3,7 +3,7 @@
   tasks:
     - name: Update packages on workstations
       package:
-        name: "apt"
+        name:  apt
         state: latest
       register: workstation_updates
         
