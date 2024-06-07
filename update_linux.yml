@@ -1,20 +1,16 @@
 ---
-- hosts: debian_servers
+- name: Update Linux Servers
+  hosts: linux_servers
   become: yes
   tasks:
-    - name: Update packages on Debian servers
+    - name: Update all packages to the latest version
       apt:
-        name: "apt"
+        update_cache: yes
+        upgrade: dist
+      when: ansible_os_family == "Debian"
+    
+    - name: Update all packages to the latest version
+      yum:
+        name: "*"
         state: latest
-      register: debian_updates
-
-    - name: Upgrade packages on Debian servers
-      apt:
-        name: "apt"
-        state: latest
-      register: debian_upgrades
-        
-    - name: Reboot Debian servers if needed
-      reboot:
-        reboot_timeout: 300
-      when: debian_updates.changed
+      when: ansible_os_family == "RedHat"
