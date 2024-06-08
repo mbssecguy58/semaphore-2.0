@@ -6,7 +6,7 @@
     - name: Update all packages to the latest version
       apt:
         update_cache: yes
-        upgrade: dist
+        upgrade: yes
       when: ansible_os_family == "Debian"
     
     - name: Update all packages to the latest version
